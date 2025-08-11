@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zuckonit - Red Universitaria</title>
+  <meta name="description" content="Red universitaria ficticia inspirada en The Social Network. Publica, comparte y personaliza tu perfil." />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="assets/icon-192.png" type="image/png" />
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body class="dark">
+
+  <header class="topbar">
+    <h1>Zuckonit</h1>
+    <button id="toggle-theme" title="Alternar modo claro/oscuro">🌗</button>
+  </header>
+
+  <main class="container">
+
+    <aside class="sidebar">
+      <section class="profile-card">
+        <div class="avatar-wrap">
+          <img id="avatar" src="assets/default-avatar.png" alt="Avatar" title="Click para cambiar avatar" />
+          <input type="file" id="avatar-input" accept="image/*" style="display:none" />
+        </div>
+        <h2 id="profile-name">Estudiante</h2>
+        <p id="profile-bio">Biografía editable...</p>
+        <button id="edit-profile-btn">Editar Perfil</button>
+      </section>
+
+      <section class="filters" style="margin-top:2rem;">
+        <h3>Filtrar publicaciones</h3>
+        <select id="tag-filter" aria-label="Filtrar por etiqueta"></select>
+        <div class="row" style="margin-top:0.6rem;">
+          <label for="date-from">Desde:</label>
+          <input type="date" id="date-from" />
+        </div>
+        <div class="row">
+          <label for="date-to">Hasta:</label>
+          <input type="date" id="date-to" />
+        </div>
+        <div class="row" style="margin-top:0.6rem; justify-content:flex-end;">
+          <button id="apply-filters">Aplicar</button>
+          <button id="clear-filters">Limpiar</button>
+        </div>
+      </section>
+
+      <section class="export-import" style="margin-top:2rem;">
+        <h3>Exportar / Importar</h3>
+        <button id="export-json">Exportar JSON</button>
+        <button id="export-csv">Exportar CSV</button>
+        <input type="file" id="import-file" accept=".json,.csv" />
+      </section>
+    </aside>
+
+    <section class="feed">
+      <form id="new-post-form" class="new-post" aria-label="Formulario nueva publicación">
+        <textarea id="post-text" placeholder="¿Qué estás pensando?" aria-required="true"></textarea>
+        <div class="row">
+          <input id="post-tags" placeholder="Etiquetas (separadas por coma)" />
+          <select id="post-style" aria-label="Estilo de publicación">
+            <option value="minimal">Minimalista</option>
+            <option value="retro">Retro</option>
+            <option value="polaroid">Polaroid</option>
+          </select>
+          <button type="submit">Publicar</button>
+        </div>
+      </form>
+
+      <section id="posts-list" class="posts-list" aria-live="polite" aria-relevant="additions"></section>
+    </section>
+
+  </main>
+
+  <!-- Modal edición perfil -->
+  <div id="profile-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="profile-modal-title">
+    <div class="modal-content">
+      <h2 id="profile-modal-title">Editar Perfil</h2>
+      <label for="input-name">Nombre</label>
+      <input id="input-name" type="text" />
+      <label for="input-bio">Biografía</label>
+      <textarea id="input-bio" rows="3"></textarea>
+      <div class="row" style="justify-content:flex-end; margin-top:1rem;">
+        <button id="save-profile">Guardar</button>
+        <button id="cancel-profile">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
